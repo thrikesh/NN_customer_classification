@@ -106,7 +106,8 @@ def train_model(model,train_loader,criterion,optimizer,epochs):
 
 ### Classification Report
 
-<img width="145" height="44" alt="image" src="https://github.com/user-attachments/assets/f599dabd-4f77-49b5-8773-a18916e6fe5e" />
+<img width="547" height="427" alt="image" src="https://github.com/user-attachments/assets/88cacd1a-0a9d-4f3a-a42b-6bf7f061d83b" />
+
 
 
 
