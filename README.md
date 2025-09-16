@@ -52,48 +52,46 @@ Display the confusion matrix, classification report, and predictions.
 class PeopleClassifier(nn.Module):
     def __init__(self, input_size):
         super(PeopleClassifier, self).__init__()
-        super(PeopleClassifier, self).__init__()
-        self.fc1 = nn.Linear(input_size, 16)  
-        self.fc2 = nn.Linear(16, 8)
-        self.fc3 = nn.Linear(8, 4)
-
+        self.fc1 = nn.Linear(input_size, 32)
+        self.fc2 = nn.Linear(32, 16)
+        self.fc3 = nn.Linear(16, 8)
+        self.fc4 = nn.Linear(8, 4)
     def forward(self, x):
-        x = torch.relu(self.fc1(x))
-        x = torch.relu(self.fc2(x))
-        x = self.fc3(x)
+        x=F.relu(self.fc1(x))
+        x=F.relu(self.fc2(x))
+        x=F.relu(self.fc3(x))
+        x=self.fc4(x)
         return x
 
 
 ```
 ```python
 
-Parthiban = PeopleClassifier(input_size=x_train.shape[1])
-criterion = nn.CrossEntropyLoss()
-optimizer = optim.Adam(Parthiban.parameters(),lr=0.01)
+model =PeopleClassifier(input_size=X_train.shape[1])
+criterion =nn.CrossEntropyLoss()
+optimizer =optim.Adam(model.parameters(),lr=0.001)
 ```
 ```python
 
-def train_model(model, train_loader, criterion, optimizer, epochs):
-    for epoch in range(epochs):
-      model.train()
-      for X_batch,y_batch in train_loader:
-        optimizer.zero_grad()
-        outputs=model(X_batch)
-        loss=criterion(outputs,y_batch)
-        loss.backward()
-        optimizer.step()
+def train_model(model,train_loader,criterion,optimizer,epochs):
+  for epoch in range(epochs):
+    model.train()
+    for X_batch,y_batch in train_loader:
+      optimizer.zero_grad()
+      outputs=model(X_batch)
+      loss=criterion(outputs,y_batch)
+      loss.backward()
+      optimizer.step()
 
-
-    if (epoch + 1) % 10 == 0:
-        print(f'Epoch [{epoch+1}/{epochs}], Loss: {loss.item():.4f}')
-    #Include your code here
+  if(epoch+1)%10==0:
+    print(f'Epoch [{epoch+1}/{epochs}],Loss:{loss.item():.4f}')
 ```
 
 
 
 ## Dataset Information
+<img width="1237" height="237" alt="image" src="https://github.com/user-attachments/assets/59d6ff97-59c3-4b86-8139-61f836bf3e08" />
 
-<img width="1286" height="245" alt="image" src="https://github.com/user-attachments/assets/5a609845-a649-4689-894d-34555153f7dd" />
 
 
 ## OUTPUT
@@ -101,21 +99,23 @@ def train_model(model, train_loader, criterion, optimizer, epochs):
 
 
 ### Confusion Matrix
+<img width="677" height="568" alt="image" src="https://github.com/user-attachments/assets/95a577c0-c405-468b-a117-a93562fb5976" />
 
-<img width="732" height="575" alt="image" src="https://github.com/user-attachments/assets/49aa0780-6fc2-4670-9427-74d0753e88c4" />
 
 
 
 ### Classification Report
 
-<img width="595" height="354" alt="image" src="https://github.com/user-attachments/assets/60825f3a-09eb-40fa-926d-f51c52ebe31b" />
+<img width="145" height="44" alt="image" src="https://github.com/user-attachments/assets/f599dabd-4f77-49b5-8773-a18916e6fe5e" />
+
 
 
 
 
 ### New Sample Data Prediction
 
-<img width="565" height="94" alt="image" src="https://github.com/user-attachments/assets/485781e3-7951-4f16-95ba-1ac040948927" />
+<img width="348" height="95" alt="image" src="https://github.com/user-attachments/assets/09f40df6-b90a-4940-a883-819aa5a28565" />
+
 
 
 ## RESULT
